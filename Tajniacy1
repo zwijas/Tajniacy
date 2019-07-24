@@ -1,0 +1,27 @@
+#wybór słów do zbioru slowa - 20 elementów od slowa0 do slowa19
+a = 0
+slowa = []
+while (a<20):
+    b = str(a)
+    zn = ["słowo",b]
+    sl ="".join(zn)
+    slowa.append(sl)
+    a=a+1
+#powyższe należy zastąpić losowym generatorem słów
+k = 0
+r = 0
+lenKol = []
+while k < 5:
+    makss = 0
+    s = k
+    r = 0
+    while r < 4:
+        if len(slowa[s]) > makss:
+            makss = len(slowa[s])
+            s = s + 5
+        else:
+            s = s + 5
+        r = r + 1
+    lenKol[k] = makss
+k = k + 1
+print (lenKol)
