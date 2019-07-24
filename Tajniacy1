@@ -1,19 +1,21 @@
 #wybór słów do zbioru slowa - 20 elementów od slowa0 do slowa19
 a = 0
 slowa = []
-while (a<20):
+while a < 20:
     b = str(a)
     zn = ["słowo",b]
     sl ="".join(zn)
     slowa.append(sl)
     a=a+1
+slowa[6] = "kuksaniec"
 #powyższe należy zastąpić losowym generatorem słów
-k = 0
-r = 0
-lenKol = []
-while k < 5:
-    makss = 0
-    s = k
+#plansza 5 kolumn, 4 rzędy, numerowane od zera, słowa numerowane rzędami od 0 do 19 (rząd 0: słowa od 0 do 4 itd)
+k = 0 #numer kolumny
+r = 0 #numer rzędu
+lenKol = [0, 0, 0, 0, 0]
+while k < 5: #bo 5 kolumn
+    makss = 0 #maksymalna długość bieżąco sprawdzanej kolumny
+    s = k #numer bieżącego słowa
     r = 0
     while r < 4:
         if len(slowa[s]) > makss:
@@ -23,5 +25,17 @@ while k < 5:
             s = s + 5
         r = r + 1
     lenKol[k] = makss
-k = k + 1
-print (lenKol)
+    k = k + 1
+#lenkol - lista z długościami najdłuższego wyrazu w kolejnych kolumnach = szerokość kolejnych kolumn
+k = 0 #numer kolumny
+r = 0 #numer rzędu
+while r < 4
+    while k < 5:
+        print("|",end = "")
+        lit = 0
+        while lit < lenKol[k]:
+            print ("-", end = "")
+            lit = lit + 1
+        k = k + 1
+    print ("|", end = "")
+# |słowo[s][właściwa ilość spacji]|
