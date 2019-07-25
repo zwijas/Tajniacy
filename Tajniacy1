@@ -1,60 +1,72 @@
-#wybór słów do zbioru slowa - 20 elementów od slowa0 do slowa19
+# wybór wielkości planszy
+# plansza [ilkolumn] kolumn, [ilwierszy] rzędów, numerowane od zera, słowa numerowane rzędami od 0 do ilkolumn*ilwierszy-1
+print ("wpisz liczbę wierszy:")
+ilwierszy = int(input())
+print ("Wpisz liczbę kolumn:")
+ilkolumn = int(input())
+ilslow = ilwierszy*ilkolumn
+# generator słów "słowo[numer] do zbioru slowa - odpowiednia ilość elementów od slowa0 do slowa[ilość pół - 1)
 a = 0
 slowa = []
-while a < 20:
+while a < ilslow:
     b = str(a)
-    zn = ["słowo",b]
-    sl ="".join(zn)
+    zn = ["słowo", b]
+    sl = "".join(zn)
     slowa.append(sl)
-    a=a+1
+    a = a + 1
 slowa[0] = "pierdzący"
 slowa[1] = "korzyść"
 slowa[2] = "kuksaniec"
 slowa[3] = "kobyła"
 slowa[4] = "porządek"
-#powyższe należy zastąpić losowym generatorem słów
-#plansza 5 kolumn, 4 rzędy, numerowane od zera, słowa numerowane rzędami od 0 do 19 (rząd 0: słowa od 0 do 4 itd)
-k = 0 #numer kolumny
-r = 0 #numer rzędu
-lenKol = [0, 0, 0, 0, 0]
-while k < 5: #bo 5 kolumn
-    makss = 0 #maksymalna długość bieżąco sprawdzanej kolumny
-    s = k #numer bieżącego słowa
-    r = 0
-    while r < 4:
+slowa[5] = "konstantynopol"
+# zmiana wszystkich słów na pisane wielkimi literami
+s = 0
+while s < len(slowa):
+    slowa[s] = slowa[s].upper()
+    s = s+ 1
+# Tworzenie listy z długościami najdłuższego wyrazu w kolejnych kolumnach = szerokość kolejnych kolumn
+k = 0  # numer kolumny
+r = 0  # numer rzędu
+lenKol = []
+while k < ilkolumn:
+    makss = 0  # maksymalna długość bieżąco sprawdzanej kolumny
+    s = k  # numer bieżącego słowa
+    r = 0 #numr rzędu
+    while r < ilwierszy:
         if len(slowa[s]) > makss:
             makss = len(slowa[s])
-            s = s + 5
+            s = s + ilkolumn
         else:
-            s = s + 5
+            s = s + ilkolumn
         r = r + 1
-    lenKol[k] = makss
+    lenKol.append(makss)
     k = k + 1
-#lenkol - lista z długościami najdłuższego wyrazu w kolejnych kolumnach = szerokość kolejnych kolumn
-k = 0 #numer kolumny
-r = 0 #numer rzędu
-while r < 5:
+#Rysowanie planszy
+k = 0  # numer kolumny
+r = 0  # numer rzędu
+while r < ilwierszy+1:
     k = 0
-    s = r * 5
-    while k < 5:
-        print("|",end = "")
+    s = r * ilkolumn
+    while k < ilkolumn:
+        print("+", end="")
         lit = 0
         while lit < lenKol[k]:
-            print ("-", end = "")
+            print("-", end="")
             lit = lit + 1
         k = k + 1
-    print ("|", end = "")
-    print ()
-    if r < 4:
+    print("+", end="")
+    print()
+    if r < ilwierszy:
         k = 0
-        while k < 5:
-            print ("|", end = "")
-            print (slowa[s], end = "")
-            l = len (slowa[s])
+        while k < ilkolumn:
+            print("|", end="")
+            print(slowa[s], end="")
+            l = len(slowa[s])
             while l < lenKol[k]:
-                print (" ", end = "")
+                print(" ", end="")
                 l = l + 1
             k = k + 1
             s = s + 1
-        print ("|")
-    r = r +1
+        print("|")
+    r = r + 1
