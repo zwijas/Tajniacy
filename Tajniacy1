@@ -7,7 +7,11 @@ while a < 20:
     sl ="".join(zn)
     slowa.append(sl)
     a=a+1
-slowa[6] = "kuksaniec"
+slowa[0] = "pierdzący"
+slowa[1] = "korzyść"
+slowa[2] = "kuksaniec"
+slowa[3] = "kobyła"
+slowa[4] = "porządek"
 #powyższe należy zastąpić losowym generatorem słów
 #plansza 5 kolumn, 4 rzędy, numerowane od zera, słowa numerowane rzędami od 0 do 19 (rząd 0: słowa od 0 do 4 itd)
 k = 0 #numer kolumny
