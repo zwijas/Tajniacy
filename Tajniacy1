@@ -1,15 +1,43 @@
 # wybór wielkości planszy
 # plansza [ilkolumn] kolumn, [ilwierszy] rzędów, numerowane od zera, słowa numerowane rzędami od 0 do ilkolumn*ilwierszy-1
-print ("wpisz liczbę wierszy:")
-ilwierszy = int(input())
-print ("Wpisz liczbę kolumn:")
-ilkolumn = int(input())
+print("Witaj w generatorze plansz do tajniaków!")
+
+print ("Wciśnij enter dla standardowych wymiarów, lub wpisz liczbę wierszy:")
+wejscie = input()
+try:
+    ilwierszy = int(wejscie)
+except:
+    ilwierszy = 4
+    ilkolumn = 5
+    agenci1 = 8
+    agenci2 = 9
+    killers = 1
+if ilwierszy == 0:
+    print ("Wpisz liczbę kolumn:")
+    ilkolumn = int(input())
+    print ("wpisz ilość haseł dla zespołu 1:")
+    agenci1 = int(input())
+    print ("wpisz ilość haseł dla zespołu 2:")
+    agenci2 = int(input())
+    print ("wpisz ilość zabójców")
+    killers = int(input())
 ilslow = ilwierszy*ilkolumn
 # generator słów "słowo[numer] do zbioru slowa - odpowiednia ilość elementów od slowa0 do slowa[ilość pół - 1)
-a = 0
+#wszystkie słowa do użycia na planszy
+katalog = []
+import csv
+with open('slowa.csv', 'r', encoding='utf-8') as csvfile:
+    reader = csv.reader(csvfile, delimiter=',')
+    for row in reader:
+        katalog.append(row[0])
+#losowanie słów
+import random
 slowa = []
-while a < ilslow:
-    b = str(a)
+while len(slowa) < ilslow:
+    a = random.choice(katalog)
+    if a not in slowa:
+        slowa.append(a)
+'''    b = str(a)
     zn = ["słowo", b]
     sl = "".join(zn)
     slowa.append(sl)
@@ -19,7 +47,7 @@ slowa[1] = "korzyść"
 slowa[2] = "kuksaniec"
 slowa[3] = "kobyła"
 slowa[4] = "porządek"
-slowa[5] = "konstantynopol"
+slowa[5] = "konstantynopol"'''
 # zmiana wszystkich słów na pisane wielkimi literami
 s = 0
 while s < len(slowa):
