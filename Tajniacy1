@@ -26,7 +26,7 @@ while bladplan == 1:
         print ("Wciśnij enter dla standardowych parametrów, lub wpisz liczbę wierszy:")
         wejscie = input()
         if wejscie == '':
-            ilwierszy = 4
+            ilwierszy = 5
             ilkolumn = 5
             agenci1 = 8
             agenci2 = 9
@@ -62,54 +62,55 @@ while bladplan == 1:
         print ('wybrana plansza jest za duża, w katalogu nie ma wystarczającej ilości słów na tak dużą planszę, spróbuj jeszcze raz.')
     else:
         bladplan = 0
-bladag = 1
-while bladag == 1:
-    blad = 1
-    while blad == 1:
-        print("Wpisz liczbę agentów dla drużyny 1:")
-        wejscie = input()
-        try:
-            agenci1 = int(wejscie)
-            if agenci1 < 1:
+if wejscie != '':
+    bladag = 1
+    while bladag == 1:
+        blad = 1
+        while blad == 1:
+            print("Wpisz liczbę agentów dla drużyny 1:")
+            wejscie = input()
+            try:
+                agenci1 = int(wejscie)
+                if agenci1 < 1:
+                    print("Musisz wpisać liczbę naturalną.")
+                    blad = 1
+                else:
+                    blad = 0
+            except:
                 print("Musisz wpisać liczbę naturalną.")
                 blad = 1
-            else:
-                blad = 0
-        except:
-            print("Musisz wpisać liczbę naturalną.")
-            blad = 1
-    blad = 1
-    while blad == 1:
-        print("Wpisz liczbę agentów dla drużyny 2:")
-        wejscie = input()
-        try:
-            agenci2 = int(wejscie)
-            if agenci2 < 1:
+        blad = 1
+        while blad == 1:
+            print("Wpisz liczbę agentów dla drużyny 2:")
+            wejscie = input()
+            try:
+                agenci2 = int(wejscie)
+                if agenci2 < 1:
+                    print("Musisz wpisać liczbę naturalną.")
+                    blad = 1
+                else:
+                    blad = 0
+            except:
                 print("Musisz wpisać liczbę naturalną.")
                 blad = 1
-            else:
-                blad = 0
-        except:
-            print("Musisz wpisać liczbę naturalną.")
-            blad = 1
-    blad = 1
-    while blad == 1:
-        print("Wpisz liczbę zabójców:")
-        wejscie = input()
-        try:
-            killers = int(wejscie)
-            if killers < 1:
+        blad = 1
+        while blad == 1:
+            print("Wpisz liczbę zabójców:")
+            wejscie = input()
+            try:
+                killers = int(wejscie)
+                if killers < 1:
+                    print("Musisz wpisać liczbę naturalną.")
+                    blad = 1
+                else:
+                    blad = 0
+            except:
                 print("Musisz wpisać liczbę naturalną.")
                 blad = 1
-            else:
-                blad = 0
-        except:
-            print("Musisz wpisać liczbę naturalną.")
-            blad = 1
-    if agenci1 + agenci2 + killers > ilkolumn*ilwierszy:
-        print ('Ilość haseł do odgadnięcia i zabójców jest większa, niż ilość pól, wpisz mniejsze wartości')
-    else:
-        bladag = 0
+        if agenci1 + agenci2 + killers > ilkolumn*ilwierszy:
+            print ('Ilość haseł do odgadnięcia i zabójców jest większa, niż ilość pól, wpisz mniejsze wartości')
+        else:
+            bladag = 0
 #losowanie słów
 import random
 slowa = []
@@ -167,3 +168,26 @@ while r < ilwierszy+1:
             s = s + 1
         print("|")
     r = r + 1
+print ()
+#losowanie słów - agentów i zabójców
+cywile = slowa[:]
+slowaAgenci1 = []
+slowaAgenci2 = []
+slowaKillers = []
+while len(slowaAgenci1) < agenci1:
+    a = random.choice(cywile)
+    slowaAgenci1.append(a)
+    cywile.remove(a)
+while len(slowaAgenci2) < agenci2:
+    a = random.choice(cywile)
+    slowaAgenci2.append(a)
+    cywile.remove(a)
+while len(slowaKillers) < killers:
+    a = random.choice(cywile)
+    slowaKillers.append(a)
+    cywile.remove(a)
+#wydruk wszystkich grup
+print ("ilosć agentów drużyny 1:", agenci1, slowaAgenci1)
+print ("ilosć agentów drużyny 2:", agenci2, slowaAgenci2)
+print ("ilosć zabójców:", killers, slowaKillers)
+print ("ilość cywilów:", len(cywile), cywile)
