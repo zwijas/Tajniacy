@@ -18,6 +18,7 @@ while a < len (zpliku):
         katalog.append(zpliku[a])
         a = a + 1
 # wybór wielkości planszy, enter = wymiary z gry planszowej
+import random
 print('katalog zawiera', len(katalog), 'niepowtarzalnych słów.')
 bladplan = 1
 while bladplan == 1:
@@ -28,8 +29,16 @@ while bladplan == 1:
         if wejscie == '':
             ilwierszy = 5
             ilkolumn = 5
-            agenci1 = 8
-            agenci2 = 9
+            l = [8, 9]
+            agenci1 = random.choice(l)
+            if agenci1 == 8:
+                agenci2 = 9
+                print("Rozpoczyna drużyna 2")
+                Iruch = 2
+            else:
+                agenci2 = 8
+                print("Rozpoczyna drużyna 1")
+                Iruch = 1
             killers = 1
             blad = 0
         else:
@@ -112,7 +121,6 @@ if wejscie != '':
         else:
             bladag = 0
 #losowanie słów
-import random
 slowa = []
 while len(slowa) < ilwierszy * ilkolumn:
     a = random.choice(katalog)
@@ -144,6 +152,13 @@ while k < ilkolumn:
 k = 0  # numer kolumny
 r = 0  # numer rzędu
 plik = open('plansza.txt', 'w')
+try:
+    if Iruch == 1:
+        plik.write("Rozpoczyna drużyna 1\n")
+    if Iruch == 2:
+        plik.write("Rozpoczyna drużyna 2\n")
+except:
+    plik.write("Plansza nietypowa, nie wiadomo kto zaczyna\n")
 while r < ilwierszy+1:
     k = 0
     s = r * ilkolumn
@@ -216,6 +231,13 @@ plcywile = cywile[:]
 plcywile.sort()
 liniacywile = ', '.join(plcywile)
 plik = open('kapitans.txt', 'w')
+try:
+    if Iruch == 1:
+        plik.write("Rozpoczyna drużyna 1\n")
+    if Iruch == 2:
+        plik.write("Rozpoczyna drużyna 2\n")
+except:
+    plik.write("Plansza nietypowa, nie wiadomo kto zaczyna\n")
 plik.write("Hasła dla zespołu 1: ")
 plik.write(liniaagenci1)
 plik.write('\n')
