@@ -160,7 +160,7 @@ while r < ilwierszy+1:
     print("+", end="")
     rząd.append('+')
     print()
-    rząd.append("/r/n")
+    rząd.append("\n")
     dopliku = ''.join(rząd)
     plik.write(dopliku)
     rząd = []
@@ -180,7 +180,7 @@ while r < ilwierszy+1:
             s = s + 1
         print("|")
         rząd.append('|')
-    rząd.append('/r/n')
+    rząd.append('\n')
     dopliku = ''.join(rząd)
     plik.write(dopliku)
     r = r + 1
@@ -203,8 +203,35 @@ while len(slowaKillers) < killers:
     a = random.choice(cywile)
     slowaKillers.append(a)
     cywile.remove(a)
-#wydruk wszystkich grup
+plagenci1 = slowaAgenci1[:]
+plagenci1.sort()
+liniaagenci1 = ', '.join(plagenci1)
+plagenci2 = slowaAgenci2[:]
+plagenci2.sort()
+liniaagenci2 = ', '.join(plagenci2)
+plkillers = slowaKillers[:]
+plkillers.sort()
+liniakillers = ', '.join(plkillers)
+plcywile = cywile[:]
+plcywile.sort()
+liniacywile = ', '.join(plcywile)
+plik = open('kapitans.txt', 'w')
+plik.write("Hasła dla zespołu 1: ")
+plik.write(liniaagenci1)
+plik.write('\n')
+plik.write("Hasła dla zespołu 2: ")
+plik.write(liniaagenci2)
+plik.write('\n')
+plik.write("Zabójcy: ")
+plik.write(liniakillers)
+plik.write('\n')
+plik.write("Cywile: ")
+plik.write(liniacywile)
+plik.write('\n')
+plik.write('Powodzenia!')
+#wydruk wszystkich grup, pomijany
+'''
 print ("ilosć agentów drużyny 1:", agenci1, slowaAgenci1)
 print ("ilosć agentów drużyny 2:", agenci2, slowaAgenci2)
 print ("ilosć zabójców:", killers, slowaKillers)
-print ("ilość cywilów:", len(cywile), cywile)
+print ("ilość cywilów:", len(cywile), cywile)'''
